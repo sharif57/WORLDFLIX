@@ -42,7 +42,7 @@ export function MobileNav() {
             onClick={() =>
               item.id === "random" ? handleRandom() : handleNav(item.id)
             }
-            className={`flex flex-col items-center gap-0.5 px-3 py-1.5 text-[10px] font-medium transition-colors ${
+            className={`relative flex flex-col items-center gap-0.5 px-3 py-1.5 text-[10px] font-medium transition-colors ${
               activeView === item.id
                 ? "text-neon"
                 : "text-muted-foreground"
@@ -52,7 +52,7 @@ export function MobileNav() {
             <item.icon className="h-5 w-5" />
             {item.label}
             {item.count !== undefined && item.count > 0 && (
-              <span className="absolute -top-0.5 -right-1 w-4 h-4 bg-neon text-black text-[8px] font-bold rounded-full flex items-center justify-center">
+              <span className="absolute -top-0.5 -right-1 w-4 h-4 bg-neon text-background text-[8px] font-bold rounded-full flex items-center justify-center">
                 {item.count}
               </span>
             )}

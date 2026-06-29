@@ -30,7 +30,7 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { useAppStore } from "@/lib/store";
-import { getPlaceholderLogo, formatViewerCount } from "@/lib/utils";
+import { getPlaceholderLogo, formatViewerCount, getFlagImageUrl } from "@/lib/utils";
 import type { ChannelWithMeta } from "@/lib/types";
 import Hls from "hls.js";
 
@@ -309,7 +309,7 @@ export function PlayerModal() {
               <div className="flex items-center gap-2">
                 <Tv className="h-5 w-5 text-neon" />
                 <span className="font-bold text-sm">
-                  Stream<span className="text-neon">Hub</span>
+                  WORLD<span className="text-neon">FLIX</span>
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -571,11 +571,22 @@ export function PlayerModal() {
                         />
                       </div>
                       <div>
-                        <p className="text-sm font-semibold">
-                          {currentChannel.countryInfo
-                            ? `${currentChannel.countryInfo.flag} ${currentChannel.countryInfo.name}`
-                            : currentChannel.country}
-                        </p>
+                        <div className="text-sm font-semibold flex items-center gap-1.5">
+                          {currentChannel.countryInfo ? (
+                            <>
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img
+                                src={getFlagImageUrl(currentChannel.country)}
+                                alt=""
+                                className="w-4 h-3 object-cover rounded-sm shrink-0"
+                                loading="lazy"
+                              />
+                              <span>{currentChannel.countryInfo.name}</span>
+                            </>
+                          ) : (
+                            currentChannel.country
+                          )}
+                        </div>
                         <p className="text-xs text-muted-foreground flex items-center gap-1">
                           <Users className="h-3 w-3" />
                           {formatViewerCount(currentChannel.viewerCount)}{" "}
@@ -823,14 +834,20 @@ function SidebarChannelItem({
         <p className="text-sm font-medium leading-tight line-clamp-2">
           {channel.name}
         </p>
-        <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+        <div className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5">
           {channel.countryInfo && (
             <>
-              <span>{channel.countryInfo.flag}</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={getFlagImageUrl(channel.country)}
+                alt=""
+                className="w-4 h-3 object-cover rounded-sm shrink-0"
+                loading="lazy"
+              />
               <span>{channel.countryInfo.name}</span>
             </>
           )}
-        </p>
+        </div>
         {channel.categories?.length > 0 && (
           <p className="text-[10px] text-muted-foreground mt-0.5">
             {channel.categories.slice(0, 2).join(" · ")}

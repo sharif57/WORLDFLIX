@@ -24,6 +24,7 @@
     --input: 0 0% 89.8%;
     --ring: 155 100% 50%;
     --radius: 0.75rem;
+    --neon: 240 5.9% 10%;
   }
 
   .dark {
@@ -46,6 +47,7 @@
     --border: 0 0% 15%;
     --input: 0 0% 15%;
     --ring: 155 100% 50%;
+    --neon: 0 0% 100%;
   }
 }
 
@@ -86,13 +88,13 @@
 
 /* Neon glow effect */
 .neon-glow {
-  box-shadow: 0 0 20px rgba(0, 255, 157, 0.15),
-    0 0 40px rgba(0, 255, 157, 0.1),
-    0 0 60px rgba(0, 255, 157, 0.05);
+  box-shadow: 0 0 20px hsl(var(--neon) / 0.15),
+    0 0 40px hsl(var(--neon) / 0.1),
+    0 0 60px hsl(var(--neon) / 0.05);
 }
 
 /* Selection color */
 ::selection {
-  background: rgba(0, 255, 157, 0.3);
+  background: hsl(var(--neon) / 0.2);
   color: inherit;
 }

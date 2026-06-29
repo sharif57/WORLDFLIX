@@ -83,3 +83,7 @@ export function getCategoryIcon(category: string): string {
   };
   return icons[category] || "Tv";
 }
+
+export function getFlagImageUrl(code: string): string {
+  return `https://flagcdn.com/w20/${code.toLowerCase()}.png`;
+}

@@ -31,7 +31,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useAppStore } from "@/lib/store";
-import { getPlaceholderLogo, formatViewerCount } from "@/lib/utils";
+import { getPlaceholderLogo, formatViewerCount, getFlagImageUrl } from "@/lib/utils";
 import Hls from "hls.js";
 
 export function InlinePlayer() {
@@ -398,9 +398,9 @@ export function InlinePlayer() {
                   initial={{ scale: 0.5, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   onClick={togglePlayPause}
-                  className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-neon/90 flex items-center justify-center shadow-[0_0_30px_rgba(0,255,157,0.4)] hover:bg-neon active:scale-95 transition-all"
+                  className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-neon/90 flex items-center justify-center shadow-md hover:bg-neon active:scale-95 transition-all"
                 >
-                  <Play className="h-5 w-5 sm:h-7 sm:w-7 text-black ml-0.5" fill="black" />
+                  <Play className="h-5 w-5 sm:h-7 sm:w-7 text-background ml-0.5 fill-current" />
                 </motion.button>
               </div>
             )}
@@ -572,7 +572,14 @@ export function InlinePlayer() {
               {currentChannel.countryInfo && (
                 <span className="flex items-center gap-1.5">
                   <Globe className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-neon/70 shrink-0" />
-                  {currentChannel.countryInfo.flag} {currentChannel.countryInfo.name}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={getFlagImageUrl(currentChannel.country)}
+                    alt=""
+                    className="w-4 h-3 object-cover rounded-sm shrink-0"
+                    loading="lazy"
+                  />
+                  <span>{currentChannel.countryInfo.name}</span>
                 </span>
               )}
               <span className="flex items-center gap-1.5">

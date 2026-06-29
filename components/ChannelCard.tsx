@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { ChannelWithMeta } from "@/lib/types";
 import { useAppStore } from "@/lib/store";
-import { getPlaceholderLogo, formatViewerCount } from "@/lib/utils";
+import { getPlaceholderLogo, formatViewerCount, getFlagImageUrl } from "@/lib/utils";
 
 interface ChannelCardProps {
   channel: ChannelWithMeta;
@@ -82,8 +82,8 @@ export const ChannelCard = memo(function ChannelCard({
           {/* Play overlay */}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
             <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100">
-              <div className="w-14 h-14 rounded-full bg-neon flex items-center justify-center shadow-[0_0_30px_rgba(0,255,157,0.5)]">
-                <Play className="h-7 w-7 text-black ml-1" fill="black" />
+              <div className="w-14 h-14 rounded-full bg-neon flex items-center justify-center shadow-md">
+                <Play className="h-7 w-7 text-background ml-1 fill-current" />
               </div>
             </div>
           </div>
@@ -109,9 +109,15 @@ export const ChannelCard = memo(function ChannelCard({
           <h3 className="font-semibold text-sm truncate">{channel.name}</h3>
           <div className="flex items-center gap-2 mt-1">
             {channel.countryInfo && (
-              <span className="text-xs text-muted-foreground flex items-center gap-1">
-                <span>{channel.countryInfo.flag}</span>
-                {channel.countryInfo.name}
+              <span className="text-xs text-muted-foreground flex items-center gap-1.5">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={getFlagImageUrl(channel.country)}
+                  alt=""
+                  className="w-4 h-3 object-cover rounded-sm shrink-0"
+                  loading="lazy"
+                />
+                <span>{channel.countryInfo.name}</span>
               </span>
             )}
           </div>

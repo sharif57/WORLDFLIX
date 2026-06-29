@@ -185,7 +185,7 @@ export default function HomePage() {
                 <Tv className="absolute inset-0 m-auto h-8 w-8 text-neon" />
               </div>
               <div className="text-center">
-                <p className="font-semibold text-lg">ALLtvLive</p>
+                <p className="font-semibold text-lg">WORLDFLIX</p>
                 <p className="text-muted-foreground text-sm mt-1">
                   Loading thousands of live channels...
                 </p>

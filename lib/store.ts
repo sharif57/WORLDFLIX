@@ -48,7 +48,7 @@ interface AppState {
 function loadFavorites(): string[] {
   if (typeof window === "undefined") return [];
   try {
-    const stored = localStorage.getItem("alltvlive-favorites");
+    const stored = localStorage.getItem("worldflix-favorites");
     return stored ? JSON.parse(stored) : [];
   } catch {
     return [];
@@ -57,7 +57,7 @@ function loadFavorites(): string[] {
 
 function saveFavorites(favorites: string[]) {
   if (typeof window === "undefined") return;
-  localStorage.setItem("alltvlive-favorites", JSON.stringify(favorites));
+  localStorage.setItem("worldflix-favorites", JSON.stringify(favorites));
 }
 
 export const useAppStore = create<AppState>((set, get) => ({

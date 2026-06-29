@@ -36,7 +36,7 @@ export function Navbar() {
           <div className="flex items-center gap-2 lg:hidden">
             <Tv className="h-5 w-5 text-neon" />
             <span className="font-bold">
-              Stream<span className="text-neon">Hub</span>
+              WORLD<span className="text-neon">FLIX</span>
             </span>
           </div>
         </div>

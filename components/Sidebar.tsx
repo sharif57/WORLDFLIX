@@ -20,6 +20,7 @@ import { Badge } from "@/components/ui/badge";
 import { useAppStore } from "@/lib/store";
 import type { Country, Category, Language } from "@/lib/types";
 import Image from "next/image";
+import { getFlagImageUrl } from "@/lib/utils";
 
 interface SidebarProps {
   countries: Country[];
@@ -187,7 +188,13 @@ export function Sidebar({ countries, categories, languages }: SidebarProps) {
                             : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                             }`}
                         >
-                          <span>{country.flag}</span>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={getFlagImageUrl(country.code)}
+                            alt=""
+                            className="w-4 h-3 object-cover rounded-sm shrink-0"
+                            loading="lazy"
+                          />
                           <span className="truncate">{country.name}</span>
                         </button>
                       ))}
@@ -285,7 +292,7 @@ export function Sidebar({ countries, categories, languages }: SidebarProps) {
           {/* Footer */}
           <div className="p-4 border-t border-border">
             <p className="text-[10px] text-muted-foreground text-center">
-              Powered by iptv-org &middot; ALLtvLive
+              Powered by iptv-org &middot; WORLDFLIX
             </p>
           </div>
         </div>
